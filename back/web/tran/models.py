@@ -44,12 +44,12 @@ class Profile(models.Model):
     bio = models.CharField(max_length=100, blank=True, default='I am just a baby.')
     follow = models.ManyToManyField('Profile', related_name='followed_by', blank=True)
     MEDIA_EDITOR_AUTH_CHOICES = (
-        ('未审核', '未审核'),
-        ('审核中', '审核中'),
-        ('审核通过', '审核通过')
+        ('N', '未审核'),
+        ('I', '审核中'),
+        ('Y', '审核通过')
     )
     property = models.IntegerField(default=100)
-    media_editor_auth = models.CharField(max_length=24, choices=MEDIA_EDITOR_AUTH_CHOICES, default='未审核', blank=True)
+    media_editor_auth = models.CharField(max_length=24, choices=MEDIA_EDITOR_AUTH_CHOICES, default='N', blank=True)
     profession = models.CharField(max_length=24, blank=True)
     cover = models.CharField(max_length=100, blank=True, default='/cover.png')
 
