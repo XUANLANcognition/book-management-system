@@ -454,7 +454,7 @@ class BookSerializer(serializers.HyperlinkedModelSerializer):
 
     class Meta:
         model = Book
-        fields = ('url', 'id', 'title', 'subtitle', 'overview', 'author', 'publisher', 'isbn', 'pages', 'cover', 'pub_date', 'user', 'tag')
+        fields = ('url', 'id', 'title', 'book_id', 'author', 'translator', 'publisher', 'book_pub_date', 'isbn', 'pub_date', 'user', 'tag')
 
 
 class BookPagination(PageNumberPagination):
