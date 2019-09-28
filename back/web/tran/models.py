@@ -101,8 +101,8 @@ class BookTag(models.Model):
         return '%s' % (self.title)
 
 class Book(models.Model):
-    title = models.CharField(max_length=256)
-    book_id = models.CharField(max_length=256)
+    title = models.CharField(max_length=256, default='')
+    book_id = models.CharField(max_length=256, default='')
     author = models.CharField(max_length=256, blank=True)
     translator = models.CharField(max_length=256, blank=True)
     publisher = models.CharField(max_length=256, blank=True)
