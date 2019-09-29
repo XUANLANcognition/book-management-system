@@ -83,4 +83,5 @@ urlpatterns = [
     path('api/property_rank/', PropertyRank.as_view(), name='property-rank'),
     path('api/notices/', NoticeList.as_view(), name='notice-list'),
     path('api/follow_relations/', FollowRelaList.as_view(), name='follow-relations-list'),
+    path('api/upload_book', upload_book, name='upload-book'),
 ]

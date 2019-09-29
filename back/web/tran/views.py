@@ -262,6 +262,19 @@ def isfollow(request, pk):
         return Response({'code':'2', 'message': 'unfollowed'})
 
 
+# accept list of book
+
+
+@api_view(['POST'])
+@permission_classes(( ))
+def upload_book(request):
+    try:
+        print(json.loads(request.body))
+        return Response({'code':'1'})
+    except Exception as e:
+        return Response({'code':'2'})
+
+
 # Article API
 
 
