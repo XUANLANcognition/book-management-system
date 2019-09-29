@@ -76,7 +76,7 @@ class FigureAdmin(admin.ModelAdmin):
     list_per_page = 10
 
 class BookAdmin(admin.ModelAdmin):
-    list_display = ('title', 'book_id')
+    list_display = ('title', 'book_id', 'author')
     list_filter = ('pub_date', )
     list_per_page = 10
     filter_horizontal = ('tag', )

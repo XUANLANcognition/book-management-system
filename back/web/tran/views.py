@@ -269,16 +269,16 @@ def isfollow(request, pk):
 @api_view(['POST'])
 @permission_classes(( ))
 def upload_book(request):
-    data = json.loads(request.body)['data']
+    data = json.loads(request.body.decode('utf-8'))['data']
     error_lists = []
     repeat_lists = []
-    author = ''
-    translator = ''
-    publisher = ''
-    book_pub_date = ''
     code = ''
     message = []
     for i, element in enumerate(data):
+        author = ''
+        translator = ''
+        publisher = ''
+        book_pub_date = ''
         try:
             title = element['书名']
             book_id = element['编号']
@@ -286,10 +286,10 @@ def upload_book(request):
             error_lists.append(str(i))
             continue
         try:
-            author = i['作者']
-            translator = i['译者']
-            publisher = i['出版社']
-            book_pub_date = i['书籍发行时间']
+            author = element['作者']
+            translator = element['译者']
+            publisher = element['出版社']
+            book_pub_date = element['书籍发行时间']
         except Exception as e:
             pass
         try:
