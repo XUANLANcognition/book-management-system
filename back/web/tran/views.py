@@ -15,6 +15,7 @@ from rest_framework.authentication import TokenAuthentication
 from rest_framework import permissions
 from rest_framework import generics
 from rest_framework import filters as filter_drf
+import json
 
 from django_filters import rest_framework as filters
 
@@ -268,11 +269,40 @@ def isfollow(request, pk):
 @api_view(['POST'])
 @permission_classes(( ))
 def upload_book(request):
-    try:
-        print(json.loads(request.body))
-        return Response({'code':'1'})
-    except Exception as e:
-        return Response({'code':'2'})
+    data =  json.loads(request.body)['data']
+    error_lists = []
+    repeat_lists = []
+    author = ''
+    translator = ''
+    publisher = ''
+    book_pub_date = ''
+    code = ''
+    message = []
+    for i, element in enumerate(data):
+        try:
+            title = element['书名']
+            book_id = element['编号']
+        except Exception as e:
+            error_lists.append(str(i))
+            continue
+        try:
+            author = i['作者']
+            translator = i['译者']
+            publisher = i['出版社']
+            book_pub_date = i['书籍发行时间']
+        except Exception as e:
+            pass
+        try:
+            book = Book(title=title, book_id=book_id, author=author, translator=translator, publisher=publisher, book_pub_date=book_pub_date, user=request.user)
+            book.save()
+        except Exception as e:
+            if Book.objects.get(book_id=book_id):
+                repeat_lists.append(str(i))
+    if len(error_lists) == 0:
+        code = '1'
+    else:
+        code = '2'
+    return Response({'code': code, 'message' : {'repeat_lists' : ''.join(repeat_lists), 'error_lists' : ''.join(error_lists)}})
 
 
 # Article API
