@@ -523,7 +523,7 @@ class BookList(generics.ListCreateAPIView):
     permission_classes = (MediaPublish,)
     pagination_class = BookPagination
     filter_backends = (filters.DjangoFilterBackend, filter_drf.SearchFilter)
-    search_fields = ('title', )
+    search_fields = ('title', 'book_id', 'author', 'translator')
     filterset_class = BookFilter
 
     def perform_create(self, serializer):
