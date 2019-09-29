@@ -269,7 +269,7 @@ def isfollow(request, pk):
 @api_view(['POST'])
 @permission_classes(( ))
 def upload_book(request):
-    data =  json.loads(request.body)['data']
+    data = json.loads(request.body)['data']
     error_lists = []
     repeat_lists = []
     author = ''
