@@ -70,7 +70,7 @@ class TextEditor extends Component {
             headers: { 'Authorization': 'Token ' + window.localStorage.getItem('token') }
           }
           const response = await axios.post(
-            'https://finewf.club:8080/api/articles/',
+            'https://finewf.club:9900/api/articles/',
             {
               title: submitData.title,
               content: submitData.content,

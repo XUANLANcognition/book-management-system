@@ -83,7 +83,7 @@ class AddComment extends Component {
           headers: { 'Authorization': 'Token ' + window.localStorage.getItem('token') }
         }
         const response = await axios.get(
-          'https://finewf.club:8080/api/users/' + window.localStorage.getItem('user_id'),
+          'https://finewf.club:9900/api/users/' + window.localStorage.getItem('user_id'),
           config
         )
         this.setState(function (state) {
@@ -98,7 +98,7 @@ class AddComment extends Component {
       if (this.props.articleId) {
         try {
           const response = await axios.get(
-            'https://finewf.club:8080/api/comments/?format=json&page=' + this.state.page + '&page_size=' + count + '&article=' + this.props.articleId
+            'https://finewf.club:9900/api/comments/?format=json&page=' + this.state.page + '&page_size=' + count + '&article=' + this.props.articleId
           )
           this.comments = response.data.results
           this.setState(function (state) {
@@ -116,7 +116,7 @@ class AddComment extends Component {
           headers: { 'Authorization': 'Token ' + window.localStorage.getItem('token') }
         }
         const response = await axios.post(
-          'https://finewf.club:8080/api/comments/',
+          'https://finewf.club:9900/api/comments/',
           {
             content: value,
             article: this.props.articleUrl

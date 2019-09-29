@@ -62,7 +62,7 @@ class BookEditor extends Component {
             headers: { 'Authorization': 'Token ' + window.localStorage.getItem('token') }
           }
           const response = await axios.post(
-            'https://finewf.club:8080/api/books/',
+            'https://finewf.club:9900/api/books/',
             {
               title: submitData.title,
               subtitle: submitData.subtitle,

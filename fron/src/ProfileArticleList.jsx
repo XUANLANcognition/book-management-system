@@ -35,7 +35,7 @@ class ProfileArticleList extends Component {
  onClick = async (key, status, title) => {
    if (status === '2') {
      try {
-       let url = 'https://finewf.club:8080/api/owner_articles/' + key
+       let url = 'https://finewf.club:9900/api/owner_articles/' + key
        let config = {
          headers: { 'Authorization': 'Token ' + window.localStorage.getItem('token') }
        }
@@ -51,7 +51,7 @@ class ProfileArticleList extends Component {
    }
    if (status === '1') {
      try {
-       let url = 'https://finewf.club:8080/api/owner_articles/' + key
+       let url = 'https://finewf.club:9900/api/owner_articles/' + key
        let config = {
          headers: { 'Authorization': 'Token ' + window.localStorage.getItem('token') }
        }
@@ -94,7 +94,7 @@ class ProfileArticleList extends Component {
         headers: { 'Authorization': 'Token ' + window.localStorage.getItem('token') }
       }
       const response = await axios.get(
-        'https://finewf.club:8080/api/owner_articles/?format=json' + '&page=' + this.state.page + '&page_size=' + count,
+        'https://finewf.club:9900/api/owner_articles/?format=json' + '&page=' + this.state.page + '&page_size=' + count,
         config
       )
       this.setState(function (state) {
@@ -116,7 +116,7 @@ class ProfileArticleList extends Component {
         headers: { 'Authorization': 'Token ' + window.localStorage.getItem('token') }
       }
       const response = await axios.get(
-        'https://finewf.club:8080/api/owner_articles/?format=json' + '&page=' + this.state.page + '&page_size=' + count,
+        'https://finewf.club:9900/api/owner_articles/?format=json' + '&page=' + this.state.page + '&page_size=' + count,
         config
       )
       this.setState({
@@ -150,7 +150,7 @@ class ProfileArticleList extends Component {
             headers: { 'Authorization': 'Token ' + window.localStorage.getItem('token') }
           }
           const response = await axios.delete(
-            'https://finewf.club:8080/api/owner_articles/' + v,
+            'https://finewf.club:9900/api/owner_articles/' + v,
             config
           )
           if (response.status === 204) {

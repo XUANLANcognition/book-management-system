@@ -38,7 +38,7 @@ class ArticleOwnerPage extends Component {
 
   getArticle = async (v) => {
     try {
-      let url = 'https://finewf.club:8080/api/owner_articles/' + this.props.match.params.id
+      let url = 'https://finewf.club:9900/api/owner_articles/' + this.props.match.params.id
       let config = {
         headers: { 'Authorization': 'Token ' + window.localStorage.getItem('token') }
       }

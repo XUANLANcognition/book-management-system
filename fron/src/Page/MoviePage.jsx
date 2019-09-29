@@ -48,9 +48,9 @@ class MoviePage extends Component {
     try {
       let url = ''
       if (this.state.fliterTag.length === 0) {
-        url = 'https://finewf.club:8080/api/movies/?format=json' + '&page=' + this.page + '&page_size=' + count + '&search=' + this.state.search
+        url = 'https://finewf.club:9900/api/movies/?format=json' + '&page=' + this.page + '&page_size=' + count + '&search=' + this.state.search
       } else {
-        url = 'https://finewf.club:8080/api/movies/?format=json' + '&page=' + this.page + '&page_size=' + count + '&search=' + this.state.search + '&tag=' + this.state.fliterTag
+        url = 'https://finewf.club:9900/api/movies/?format=json' + '&page=' + this.page + '&page_size=' + count + '&search=' + this.state.search + '&tag=' + this.state.fliterTag
       }
       const response = await axios.get(url)
       const temp = []
@@ -69,7 +69,7 @@ class MoviePage extends Component {
       })
       if (this.state.selectedTags.length === 0) {
         const responseTag = await axios.get(
-          'https://finewf.club:8080/api/movieblocks/?format=json'
+          'https://finewf.club:9900/api/movieblocks/?format=json'
         )
         this.setState({ tags: responseTag.data })
       }
@@ -85,9 +85,9 @@ class MoviePage extends Component {
     try {
       let url = ''
       if (this.state.fliterTag.length === 0) {
-        url = 'https://finewf.club:8080/api/movies/?format=json' + '&page=' + page + '&page_size=' + count + '&search=' + this.state.search
+        url = 'https://finewf.club:9900/api/movies/?format=json' + '&page=' + page + '&page_size=' + count + '&search=' + this.state.search
       } else {
-        url = 'https://finewf.club:8080/api/movies/?format=json' + '&page=' + page + '&page_size=' + count + '&search=' + this.state.search + '&tag=' + this.state.fliterTag
+        url = 'https://finewf.club:9900/api/movies/?format=json' + '&page=' + page + '&page_size=' + count + '&search=' + this.state.search + '&tag=' + this.state.fliterTag
       }
       const response = await axios.get(url)
       let temp = this.state.cache

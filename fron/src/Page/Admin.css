@@ -1,0 +1,25 @@
+.upload {
+  width: 300px;
+  height: 300px;
+  border: 5px solid gray;
+  margin: 1em;
+  border-radius: 1em;
+  padding: 1em;
+  transition: 200ms;
+
+  position: relative;
+  display: flex;
+}
+
+.upload_dragOver {
+  border-style: dashed;
+  border-color: orange;
+  transform: scale(0.9);
+}
+
+.upload-label {
+  margin: auto;
+  font: menu;
+  font-size: 1.4rem;
+  font-weight: bold;
+}

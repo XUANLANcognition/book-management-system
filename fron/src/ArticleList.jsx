@@ -43,7 +43,7 @@ class ArticleList extends Component {
     getArticleData = async (v) => {
       try {
         const response = await axios.get(
-          'https://finewf.club:8080/api/articles/?format=json' + '&page=' + this.page + '&page_size=' + count
+          'https://finewf.club:9900/api/articles/?format=json' + '&page=' + this.page + '&page_size=' + count
         )
         this.setState({ data: response.data.results, cache: response.data.results, next: response.data.next })
       } catch (error) {
@@ -59,7 +59,7 @@ class ArticleList extends Component {
       try {
         this.page = this.page + 1
         const response = await axios.get(
-          'https://finewf.club:8080/api/articles/?format=json' + '&page=' + this.page + '&page_size=' + count
+          'https://finewf.club:9900/api/articles/?format=json' + '&page=' + this.page + '&page_size=' + count
         )
         this.setState({
           next: response.data.next
@@ -88,7 +88,7 @@ class ArticleList extends Component {
       })
       try {
         const response = await axios.get(
-          'https://finewf.club:8080/api/articles/?format=json' + '&page=' + this.page + '&page_size=' + count + '&search=' + value
+          'https://finewf.club:9900/api/articles/?format=json' + '&page=' + this.page + '&page_size=' + count + '&search=' + value
         )
         this.setState({ data: response.data.results, cache: response.data.results, initLoading: false, next: response.data.next })
       } catch (error) {

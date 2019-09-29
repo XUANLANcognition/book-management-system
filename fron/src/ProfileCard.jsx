@@ -23,7 +23,7 @@ class ProfileCarder extends Component {
         headers: { 'Authorization': 'Token ' + window.localStorage.getItem('token') }
       }
       const response = await axios.get(
-        'https://finewf.club:8080/api/users/' + window.localStorage.getItem('user_id'),
+        'https://finewf.club:9900/api/users/' + window.localStorage.getItem('user_id'),
         config
       )
       window.localStorage.setItem('url', response.data.url)
@@ -45,25 +45,19 @@ class ProfileCarder extends Component {
 
   render () {
     return (
-      <div>
-        <div style={{ padding: '8px 20px', borderBottom: '1px solid #e1e4e8' }}>
-          <div style={{ fontSize: '14px', color: '#8590a6', fontWeight: '600' }}>
-          当前用户 :
-          </div>
-          <div style={{ fontSize: '16px', fontWeight: 'bolder', color: '#8590a6' }}>
-            {this.state.username}
-          </div>
-        </div>
-        <Link to={'/profile/' + window.localStorage.getItem('user_id')} >
+      <div style={{ padding: '5px 0' }}>
+        <Link to='/login' >
           <div style={{ marginTop: '6px', backgroundColor: 'white', padding: '4px 10px 4px 16px', display: 'flex', justifyContent: 'center', color: '#8590a6', fontWeight: '600' }}>
-            我的主页
+            管理员登陆
           </div>
         </Link>
-        <Link to={'/notice/' + this.state.username} >
+        {window.localStorage.getItem('user_id') ? 
+        <Link to='/admin' >
           <div style={{ marginTop: '6px', backgroundColor: 'white', padding: '4px 10px 4px 16px', display: 'flex', justifyContent: 'center', color: '#8590a6', fontWeight: '600' }}>
-            关于
+            系统后台
           </div>
-        </Link>
+        </Link> : null
+      }
         <Button type='link' onClick={this.onClickLogout} block style={{ fontWeight: '600', color: '#8590a6' }}>退出登陆</Button>
       </div>
     )

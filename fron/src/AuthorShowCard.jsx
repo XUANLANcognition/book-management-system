@@ -22,7 +22,7 @@ class AuthorShowCard extends Component {
   getProfileData = async (v) => {
     try {
       const response = await axios.get(
-        'https://finewf.club:8080/api/user/' + this.props.authorId + '?format=json'
+        'https://finewf.club:9900/api/user/' + this.props.authorId + '?format=json'
       )
       this.data = response.data.results
       this.setState({

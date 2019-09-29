@@ -39,7 +39,7 @@ class ArticlePage extends Component {
   getArticle = async (v) => {
     try {
       const response = await axios.get(
-        'https://finewf.club:8080/api/articles/' + this.props.match.params.id
+        'https://finewf.club:9900/api/articles/' + this.props.match.params.id
       )
       this.setState(function (state) {
         return {

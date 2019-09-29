@@ -60,6 +60,15 @@ class Nav extends Component {
               </div>
             </Link>
 
+            <div style={{ display: 'flex', flexGrow: '1', flexDirection: 'row-reverse', alignItems: 'center' }}>
+              <div>
+                <Link to='#'>
+                  <Popover content={Card} placement='bottomRight' trigger='click' >
+                    <Icon style={{fontSize: '22px'}} type='setting'></Icon>
+                  </Popover>
+                </Link>
+              </div>
+            </div>
           </div>
         </Col>
       </Row>
