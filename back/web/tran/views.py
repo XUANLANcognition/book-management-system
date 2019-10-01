@@ -271,14 +271,11 @@ def isfollow(request, pk):
 def upload_book(request):
     data = json.loads(request.body.decode('utf-8'))['data']
     error_lists = []
+    succee_lists = []
     repeat_lists = []
     code = ''
     message = []
     for i, element in enumerate(data):
-        author = ''
-        translator = ''
-        publisher = ''
-        book_pub_date = ''
         try:
             title = element['书名']
             book_id = element['编号']
@@ -286,15 +283,16 @@ def upload_book(request):
             error_lists.append(str(i))
             continue
         try:
-            author = element['作者']
-            translator = element['译者']
-            publisher = element['出版社']
-            book_pub_date = element['书籍发行时间']
+            author = element.get('作者', '') 
+            translator = element.get('译者', '')
+            publisher = element.get('出版社', '')
+            book_pub_date = element.get('书籍发行时间', '')
         except Exception as e:
-            pass
+            continue
         try:
             book = Book(title=title, book_id=book_id, author=author, translator=translator, publisher=publisher, book_pub_date=book_pub_date, user=request.user)
             book.save()
+            succee_lists.append(str(i))
         except Exception as e:
             if Book.objects.get(book_id=book_id):
                 repeat_lists.append(str(i))
@@ -302,7 +300,7 @@ def upload_book(request):
         code = '1'
     else:
         code = '2'
-    return Response({'code': code, 'message' : {'repeat_lists' : ''.join(repeat_lists), 'error_lists' : ''.join(error_lists)}})
+    return Response({'code': code, 'message' : { 'succee_lists' : ','.join(succee_lists), 'repeat_lists' : ','.join(repeat_lists), 'error_lists' : ','.join(error_lists)}})
 
 
 # Article API
