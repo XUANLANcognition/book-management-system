@@ -46,11 +46,13 @@ class ProfileCarder extends Component {
   render () {
     return (
       <div style={{ padding: '5px 0' }}>
-        <Link to='/login' >
+        {window.localStorage.getItem('user_id') ? 
+        null : <Link to='/login' >
           <div style={{ marginTop: '6px', backgroundColor: 'white', padding: '4px 10px 4px 16px', display: 'flex', justifyContent: 'center', color: '#8590a6', fontWeight: '600' }}>
             管理员登陆
           </div>
         </Link>
+        }
         {window.localStorage.getItem('user_id') ? 
         <Link to='/admin' >
           <div style={{ marginTop: '6px', backgroundColor: 'white', padding: '4px 10px 4px 16px', display: 'flex', justifyContent: 'center', color: '#8590a6', fontWeight: '600' }}>
@@ -58,7 +60,9 @@ class ProfileCarder extends Component {
           </div>
         </Link> : null
       }
-        <Button type='link' onClick={this.onClickLogout} block style={{ fontWeight: '600', color: '#8590a6' }}>退出登陆</Button>
+      {window.localStorage.getItem('user_id') ? 
+        <Button type='link' onClick={this.onClickLogout} block style={{ marginTop: '6px', backgroundColor: 'white', padding: '4px 10px 4px 16px', display: 'flex', justifyContent: 'center', color: '#8590a6', fontWeight: '600' }}>退出登陆</Button> : null
+      }
       </div>
     )
   }

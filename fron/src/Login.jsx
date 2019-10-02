@@ -20,7 +20,7 @@ class Login extends Component {
       window.localStorage.setItem('user_id', response.data.user_id)
       window.localStorage.setItem('user_avatar', response.data.user_avatar)
       message.success('欢迎 ' + response.data.user_name + ' 进入 FWF')
-      this.props.history.replace('/')
+      this.props.history.replace('/admin')
     } catch (error) {
       message.error('账号或密码错误')
       console.log(error)
@@ -67,7 +67,6 @@ class Login extends Component {
             style={{ width: '100%' }}>
             登陆
           </Button>
-          没有账号？<Link to='/join'>注册</Link>
         </FormItem>
       </Form>
     )

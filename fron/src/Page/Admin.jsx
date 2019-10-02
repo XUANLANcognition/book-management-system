@@ -45,18 +45,25 @@ class Admin extends Component {
         var data = new Uint8Array(e.target.result);
         var workbook = xlsx.read(data, { type: "array" });
         try {
+          this.setState({
+            uploading: true
+          })
           let config = {
             headers: {
               Authorization: "Token " + window.localStorage.getItem("token")
             }
           };
-           axios.post(
-            "http://127.0.0.1:3000/api/upload_book",
+           const response = await axios.post(
+            "https://finewf.club:9900/api/upload_book",
             { data: xlsx.utils.sheet_to_json(workbook.Sheets["Sheet1"]) },
             config
           );
+          this.setState({
+            uploading: false
+          })
+          message.success('上传成功')
+          message.info(response.data.success_lists)
         } catch (error) {
-          console.error(error)
           message.error("上传失败");
           this.setState({
             uploading: false
@@ -74,6 +81,7 @@ class Admin extends Component {
   render() {
     const { uploading, fileList } = this.state;
     const props = {
+      listType: 'picture',
       onRemove: file => {
         this.setState(state => {
           const index = state.fileList.indexOf(file);
@@ -112,7 +120,7 @@ class Admin extends Component {
               >
                 <Title level={3}>欢迎你</Title>
                 <Divider type="vertical" />
-                <Link to="/editor_guidance">编辑须知</Link>
+                <Link to="/editor_guidance">上传数据帮助</Link>
               </div>
               <Dragger
                 {...props}
